@@ -1,0 +1,88 @@
+<div class="dashboard-container">
+  
+  <!-- Encabezado del Dashboard -->
+  <div class="d-flex justify-content-between align-items-center mb-5">
+    <div>
+      <h1 class="fw-bolder text-dark" style="font-size: 2.2rem; letter-spacing: -1px;">📦 Panel de Inventario</h1>
+      <p class="text-muted mb-0">Gestiona y administra tus productos en tiempo real</p>
+    </div>
+    <button (click)="agregarProducto()" class="btn btn-primary btn-modern">
+      <span class="me-2">➕</span> Nuevo Producto
+    </button>
+  </div>
+
+  <!-- Tabla en Tarjeta Moderna -->
+  <div class="card modern-card">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          
+          <thead class="bg-light text-uppercase text-secondary" style="font-size: 0.75rem; letter-spacing: 1px;">
+            <tr>
+              <th scope="col" class="py-4 ps-4 border-0">Código</th>
+              <th scope="col" class="border-0">Descripción</th>
+              <th scope="col" class="border-0">Precio</th>
+              <th scope="col" class="border-0">Estado</th>
+              <th scope="col" class="text-center border-0">Acciones</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            @for (producto of productos; track $index) {
+              <tr>
+                <!-- Código -->
+                <td class="ps-4">
+                  <span class="text-muted fw-bold">#{{ producto.idProducto }}</span>
+                </td>
+                
+                <!-- Descripción -->
+                <td>
+                  <div class="fw-bold text-dark" style="font-size: 1.1rem;">{{ producto.descripcion }}</div>
+                </td>
+                
+                <!-- Precio -->
+                <td>
+                  <div class="fw-bolder text-dark">{{ producto.precio | currency:'USD' }}</div>
+                </td>
+                
+                <!-- Existencias (Badges personalizados) -->
+                <td>
+                  <span class="stock-badge" [ngClass]="{'stock-ok': producto.existencias > 0, 'stock-empty': producto.existencias === 0}">
+                    @if(producto.existencias > 0) {
+                       ✅ {{ producto.existencias }} en almacén
+                    } @else {
+                       🚨 Agotado
+                    }
+                  </span>
+                </td>
+                
+                <!-- Acciones -->
+                <td class="text-center">
+                  <button (click)="editarProducto(producto.idProducto)" class="btn btn-light btn-modern btn-sm me-2 text-primary border shadow-sm">
+                    ✏️ Editar
+                  </button>
+                  <button (click)="eliminarProducto(producto.idProducto)" class="btn btn-light btn-modern btn-sm text-danger border shadow-sm">
+                    🗑️
+                  </button>
+                </td>
+              </tr>
+            } @empty {
+              <!-- Estado Vacío Moderno -->
+              <tr>
+                <td colspan="5" class="text-center py-5">
+                  <div class="text-muted mb-3" style="font-size: 4rem;">📭</div>
+                  <h4 class="fw-bold text-dark">Inventario Vacío</h4>
+                  <p class="text-muted">No hay productos registrados en tu base de datos en este momento.</p>
+                  <button (click)="agregarProducto()" class="btn btn-outline-primary btn-modern mt-2">
+                    Registrar mi primer producto
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+</div>

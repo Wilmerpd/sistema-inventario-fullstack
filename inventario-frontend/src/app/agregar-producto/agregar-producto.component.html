@@ -1,0 +1,41 @@
+<div class="container mt-5" style="max-width: 600px;">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white text-center">
+      <h3 class="mb-0">Registrar Nuevo Producto</h3>
+    </div>
+    <div class="card-body">
+      
+      <!-- Agregamos el evento (ngSubmit) al formulario -->
+      <form (ngSubmit)="guardarProducto()">
+        
+        <div class="mb-3">
+          <label class="form-label fw-bold">Descripción</label>
+          <!-- Agregamos name y [(ngModel)] -->
+          <input type="text" class="form-control" id="descripcion" name="descripcion" [(ngModel)]="producto.descripcion" required placeholder="Ej: Teclado Mecánico RGB">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label fw-bold">Precio</label>
+          <div class="input-group">
+            <span class="input-group-text">$</span>
+            <!-- Agregamos name y [(ngModel)] -->
+            <input type="number" class="form-control" id="precio" name="precio" [(ngModel)]="producto.precio" required placeholder="0.00">
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label fw-bold">Existencias</label>
+          <!-- Agregamos name y [(ngModel)] -->
+          <input type="number" class="form-control" id="existencias" name="existencias" [(ngModel)]="producto.existencias" required placeholder="Cantidad en bodega">
+        </div>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+          <!-- Cambiamos el botón a type="submit" -->
+          <button type="submit" class="btn btn-success px-4">Guardar Producto</button>
+          <a routerLink="/productos" class="btn btn-danger px-4">Cancelar</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

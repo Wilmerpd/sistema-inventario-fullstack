@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6 mt-5">
+      <div class="card shadow-lg border-0 rounded-lg">
+        <div class="card-header bg-warning text-dark text-center py-3">
+          <h3 class="fw-bold m-0">Editar Producto</h3>
+        </div>
+        <div class="card-body p-4">
+          <form (ngSubmit)="onSubmit()">
+            
+            <div class="mb-3">
+              <label class="form-label fw-bold">Descripción</label>
+              <input type="text" class="form-control" id="descripcion" 
+                     [(ngModel)]="producto.descripcion" name="descripcion" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-bold">Precio</label>
+              <input type="number" class="form-control" id="precio" 
+                     [(ngModel)]="producto.precio" name="precio" required>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label fw-bold">Existencias</label>
+              <input type="number" class="form-control" id="existencias" 
+                     [(ngModel)]="producto.existencias" name="existencias" required>
+            </div>
+
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-warning fw-bold px-4 me-2 shadow-sm">Guardar Cambios</button>
+              <button type="button" class="btn btn-secondary px-4 shadow-sm" (click)="irListaProductos()">Cancelar</button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
